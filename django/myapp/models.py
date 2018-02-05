@@ -14,6 +14,7 @@ class Musician(models.Model):
 
 class Album(models.Model):
     artist = models.ForeignKey(Musician, on_delete=models.CASCADE)
+    nickname = models.CharField(max_length=30, unique=True)
     name = models.CharField(max_length=100)
     release_date = models.DateTimeField(
         blank=True,
@@ -29,7 +30,7 @@ class Person(models.Model):
         ('L', 'Large'),
     )
 
-    name = models.CharField(max_length=50)
+    name = models.CharField('이름', max_length=50)
     shirt_size = models.CharField(max_length=1, choices=SHIRT_SIZES)
 
     def __str__(self):
@@ -38,3 +39,4 @@ class Person(models.Model):
             pk=self.pk,
             shirt_size=self.shirt_size,
         )
+
