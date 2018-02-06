@@ -10,9 +10,14 @@ class InstagramUser(models.Model):
     following = models.ManyToManyField(
         'self',
         symmetrical=False,
+        related_name = 'followrs'
+
     )
 
     def __str__(self):
         return self.name
 
-        
+    def followers(self):
+        #자신을 following하고 있는 사람들을 리턴
+        #문자열이 아닌 쿼리 자체
+        return self.name
