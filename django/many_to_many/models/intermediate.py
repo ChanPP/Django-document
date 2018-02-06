@@ -29,4 +29,3 @@ class PostLike(models.Model):
             name=self.user.name,
             date=datetime.strftime(datetime.timezone.localtime
                                    (self.created_date, '%Y, %m, %d')))
-__all__
