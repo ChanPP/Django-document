@@ -43,6 +43,35 @@ class TwitterUser(models.Model):
         following_users = TwitterUser.objects.filter(pk__in=following_pk_list)
         return following_users
 
+    @property
+    def block_users(self):
+        """
+        내가 block하고 있는 TwitterUser목록을 가져옴
+        :return:
+        """
+        pk_list = self.relations_by_from.filter(
+            type=Relation.RELATION_TYPE_BLOCK).values_list('to_user', flat=True)
+        return TwitterUser.objects.filter(pk__in=pk_list)
+
+    def follow(self, to_user):
+        """
+        to_user에 주어진 TwitterUsers를 follow함
+        :param to_users:
+        :return:
+        """
+        self.relations_by_from_user.filter(to_user=to_user).delete()
+        self.relations_by_from_user.create(
+            to_users=to_user,
+            type=Relation.RELATION_TYPE_FOLLOWING,
+        )
+
+    def block(self, to_user):
+        self.relations_by_from_user.filter(to_user=to_user).delete()
+        self.relations_by_from_user.create(
+            to_user=to_user,
+            type=Relation.RELATION_TYPE_FOLLOWING,
+        )
+
 
 class Relation(models.Model):
     """
@@ -69,3 +98,14 @@ class Relation(models.Model):
         related_name='relations_by_to_user',
     )
     type = models.CharField(max_length=1, choices=CHOICES_TYPE)
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = (
+            #from user와 to user의 값이 이미 있을경우,
+            # db에 중복 데이터 저장을 막음
+            #ex from_user가1, to_user가 3인 데이터가 이미 있다면
+            #   두 항목의 값이 모두 같은 또 다른 데이터가 존재할수없음
+            ('from_user', 'to_user')
+
+        )
