@@ -1,6 +1,11 @@
 from datetime import datetime
 from django.db import models
 from django.utils import timezone
+__all__ = (
+    'PostLike',
+    'User',
+    'Post',
+)
 
 
 class Post(models.Model):
