@@ -34,6 +34,9 @@ INSTALLED_APPS = [
     'myapp',
     'foreignkey',
     'many_to_many',
+    'one_to_one',
+
+    'inheritance.abstract_base_classes',
 
 
     'django.contrib.admin',

@@ -8,6 +8,8 @@ __all__ = (
 class FacebookUser(models.Model):
     name = models.CharField(max_length=50)
     friends = models.ManyToManyField('self')
+    class Meta:
+        verbose_name_plural = 'symmetrical_intermediate - FacebookUser'
 
     def __str__(self):
         # friends_string = ''

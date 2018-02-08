@@ -7,6 +7,8 @@ __all__ = (
 
 
 class TwitterUser(models.Model):
+    class Meta:
+        verbose_name_plural = 'symmetrical_intermediate - TwitterUser'
     """
     내가 A를 follow 함
         나는 A의 follower
@@ -108,6 +110,8 @@ class TwitterUser(models.Model):
 
 
 class Relation(models.Model):
+    class Meta:
+        verbose_name_plural = 'symmetrical_intermediate - Relation'
     """
     유저간의 관계를 정의하는 모델
     단순히 자신의 MTM이 아닌 중개모델의 역할을 함
