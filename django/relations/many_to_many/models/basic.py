@@ -1,11 +1,10 @@
 from django.db import models
+
 __all__ = (
     'Topping',
     'Pizza',
 )
 
-
-# Create your models here.
 
 class Topping(models.Model):
     name = models.CharField(max_length=50)
@@ -22,7 +21,7 @@ class Pizza(models.Model):
     toppings = models.ManyToManyField(Topping)
 
     class Meta:
-        verbose_name_plural = 'Basic - Pizza'
+        verbose_name_plural = 'Basic - Pizzas'
 
     def __str__(self):
         return self.name

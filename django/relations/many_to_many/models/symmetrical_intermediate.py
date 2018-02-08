@@ -7,14 +7,14 @@ __all__ = (
 
 
 class TwitterUser(models.Model):
-    class Meta:
-        verbose_name_plural = 'symmetrical_intermediate - TwitterUser'
     """
     내가 A를 follow 함
         나는 A의 follower
         A는 나의 followee
+
     A와 내가 서로 follow함
         나와 A는 friend
+
     Block기능이 있어야 함
     """
     name = models.CharField(max_length=50)
@@ -24,6 +24,9 @@ class TwitterUser(models.Model):
         through='Relation',
         related_name='+',
     )
+
+    class Meta:
+        verbose_name_plural = 'IntermediateSymmetrical - TwitterUser'
 
     def __str__(self):
         return self.name
@@ -110,8 +113,6 @@ class TwitterUser(models.Model):
 
 
 class Relation(models.Model):
-    class Meta:
-        verbose_name_plural = 'symmetrical_intermediate - Relation'
     """
     유저간의 관계를 정의하는 모델
     단순히 자신의 MTM이 아닌 중개모델의 역할을 함
@@ -139,6 +140,7 @@ class Relation(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
+        verbose_name_plural = 'IntermediateSymmetrical - Relation'
         unique_together = (
             # from_user와 to_user의 값이 이미 있을 경우
             # DB에 중복 데이터 저장을 막음
