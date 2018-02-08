@@ -32,9 +32,9 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'myapp',
-    'foreignkey',
-    'many_to_many',
-    'one_to_one',
+    'relations.foreignkey',
+    'relations.many_to_many',
+    'relations.one_to_one',
 
     'inheritance.abstract_base_classes',
 
