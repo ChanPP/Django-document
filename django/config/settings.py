@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     # 'inheritance.proxy.apps.ProxyConfig',
     'inheritance.proxy',
     'inheritance.custom_manager',
+    'inheritance.proxy_man',
 
 ]
 
