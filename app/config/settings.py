@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'inheritance.custom_manager',
     'inheritance.proxy_man',
     'inheritance.multiple_inheritance',
+    'weblog',
 
 ]
 
